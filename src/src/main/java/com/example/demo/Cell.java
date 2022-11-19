@@ -11,6 +11,7 @@ public class Cell {
     private Group root;
     private Text textClass;
     private boolean modify = false;
+    public static int adderValue = 0;
 
     void setModify(boolean modify) {
         this.modify = modify;
@@ -52,7 +53,11 @@ public class Cell {
     }
 
     void adder(Cell cell) {
+        adderValue = (cell.getNumber() + getNumber());
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
+        System.out.println("Adder value: "+adderValue);
+        GameScene.score += Cell.adderValue;
+        Cell.adderValue = 0;
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
