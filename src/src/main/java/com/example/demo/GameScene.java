@@ -19,7 +19,7 @@ class GameScene {
     private TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
-    private long score = 0;
+    public static long score = 0;
 
     static void setN(int number) {
         n = number;
@@ -248,13 +248,7 @@ class GameScene {
         return true;
     }
 
-    private void sumCellNumbersToScore() {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                score += cells[i][j].getNumber();
-            }
-        }
-    }
+    
 
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
@@ -292,7 +286,6 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
-                    GameScene.this.sumCellNumbersToScore();
                     scoreText.setText(score + "");
                     haveEmptyCell = GameScene.this.haveEmptyCell();
                     if (haveEmptyCell == -1) {
@@ -303,7 +296,7 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1)
+                    } else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT))
                         GameScene.this.randomFillNumber(2);
                 });
             });
