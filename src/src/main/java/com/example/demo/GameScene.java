@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 class GameScene {
-    private static int HEIGHT = 700;
+    private static int HEIGHT = 600;
     private static int n = 4;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -20,6 +20,9 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     public static long score = 0;
+    private boolean movement = true;
+    public static boolean add = false;
+    private int [][] prevArray = new int[4][4];
 
     static void setN(int number) {
         n = number;
@@ -28,6 +31,27 @@ class GameScene {
 
     static double getLENGTH() {
         return LENGTH;
+    }
+
+    private void gameStateSave() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                prevArray[i][j] = cells[i][j].getNumber();
+            }
+        }
+    }
+
+    private void gameStateCheck() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.println("Previous array: "+prevArray[i][j]);
+                if (prevArray[i][j] != cells[i][j].getNumber()) {
+                    System.out.println("Current array: "+cells[i][j].getNumber());
+                    movement =  true;
+                }
+                prevArray[i][j] = cells[i][j].getNumber();
+            }
+        }
     }
 
     private void randomFillNumber(int turn) {
@@ -273,10 +297,12 @@ class GameScene {
 
         randomFillNumber(1);
         randomFillNumber(1);
+        gameStateSave();
 
         gameScene.addEventHandler(KeyEvent.KEY_PRESSED, key ->{
                 Platform.runLater(() -> {
                     int haveEmptyCell;
+                    gameStateSave();
                     if (key.getCode() == KeyCode.DOWN) {
                         GameScene.this.moveDown();
                     } else if (key.getCode() == KeyCode.UP) {
@@ -286,8 +312,9 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
-                    scoreText.setText(score + "");
+                    scoreText.setText(score + "cocksucker");
                     haveEmptyCell = GameScene.this.haveEmptyCell();
+                    gameStateCheck();
                     if (haveEmptyCell == -1) {
                         if (GameScene.this.canNotMove()) {
                             primaryStage.setScene(endGameScene);
@@ -296,8 +323,11 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT || key.getCode() == KeyCode.RIGHT))
+                    } else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT ||
+                            key.getCode() == KeyCode.RIGHT) && (movement || add))
                         GameScene.this.randomFillNumber(2);
+                        add = false;
+                        movement = false;
                 });
             });
     }
