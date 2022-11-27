@@ -1,8 +1,70 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.example.demo.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <VBox fx:id="Menu" prefHeight="384.0" prefWidth="279.0" style="-fx-background-color: white; -fx-border-color: yellow; -fx-border-radius: 20; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <Label style="-fx-padding: 5; -fx-background-color: #7CFC00; -fx-background-radius: 10;" text="2048" textAlignment="CENTER" translateX="100.0" translateY="80.0">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                    <effect>
+                        <Reflection />
+                    </effect></Label>
+                <ChoiceBox fx:id="colour_picker" onAction="#pick_colour" prefWidth="150.0" translateX="65.0" translateY="150.0" value="Pick a colour">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="YELLOW" />
+                            <String fx:value="GREEN" />
+                            <String fx:value="PURPLE" />
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+                <ChoiceBox fx:id="game_type" onAction="#set_gametype" value="Select your board size" prefWidth="150.0" translateX="65.0" translateY="160.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="3x3" />
+                            <String fx:value="4x4" />
+                            <String fx:value="5x5" />
+                        </FXCollections>
+                    </items>
+                </ChoiceBox>
+
+                <Button fx:id="StartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonClick" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-padding: 10;" text="Start" textAlignment="CENTER" translateX="110.0" translateY="180.0">
+                    <font>
+                        <Font name="Berlin Sans FB" size="23.0" />
+                    </font>
+                    <effect>
+                        <InnerShadow />
+                    </effect></Button>
+            </children>
+            <effect>
+                <DropShadow height="25.68" radius="12.925" width="28.02" />
+            </effect>
+        </VBox>
+    </children>
 </GridPane>
