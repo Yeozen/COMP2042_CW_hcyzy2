@@ -22,7 +22,7 @@ class GameScene {
     public static long score = 0;
     private boolean movement = true;
     public static boolean add = false;
-    private int [][] prevArray = new int[4][4];
+    private int [][] prevArray = new int[5][5];
 
     static void setN(int number) {
         n = number;

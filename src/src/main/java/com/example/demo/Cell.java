@@ -55,9 +55,9 @@ public class Cell {
     void adder(Cell cell) {
         adderValue = (cell.getNumber() + getNumber());
         cell.getTextClass().setText((cell.getNumber() + this.getNumber()) + "");
-        System.out.println("Adder value: "+adderValue);
         GameScene.score += Cell.adderValue;
         Cell.adderValue = 0;
+        GameScene.add = true;
         textClass.setText("0");
         root.getChildren().remove(textClass);
         cell.setColorByNumber(cell.getNumber());
@@ -122,5 +122,6 @@ public class Cell {
     private Text getTextClass() {
         return textClass;
     }
+
 
 }
