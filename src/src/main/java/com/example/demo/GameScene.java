@@ -13,7 +13,7 @@ import java.util.Random;
 
 class GameScene {
     private static int HEIGHT = 600;
-    public static int n = 4;
+    public static int n;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
@@ -312,7 +312,7 @@ class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
-                    scoreText.setText(score + "cocksucker");
+                    scoreText.setText("Score: "+score);
                     haveEmptyCell = GameScene.this.haveEmptyCell();
                     gameStateCheck();
                     if (haveEmptyCell == -1) {

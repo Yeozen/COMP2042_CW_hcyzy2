@@ -33,17 +33,17 @@ public class EndGame {
         root.getChildren().add(text);
 
 
-        Text scoreText = new Text(score+"");
+        Text scoreText = new Text("SCORE: "+score);
         scoreText.setFill(Color.BLACK);
-        scoreText.relocate(250,600);
-        scoreText.setFont(Font.font(80));
+        scoreText.relocate(370,350);
+        scoreText.setFont(Font.font(40));
         root.getChildren().add(scoreText);
 
         Button quitButton = new Button("QUIT");
         quitButton.setPrefSize(100,30);
-        quitButton.setTextFill(Color.PINK);
+        quitButton.setTextFill(Color.BLACK);
         root.getChildren().add(quitButton);
-        quitButton.relocate(100,800);
+        quitButton.relocate(410,500);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

@@ -1,18 +1,11 @@
 package com.example.demo;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -61,20 +54,30 @@ public class Controller {
         game_stage.setTitle("2048");
         Group gameRoot = new Group();
         setGameRoot(gameRoot);
-        System.out.println(colour_picked);
+        System.out.println("cocksucker: "+colour_picked);
+
         if (Objects.equals(colour_picked, "YELLOW")){
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-        } else if (Objects.equals(colour_picked, "GREEN")) {
+        } else if (Objects.equals(colour_picked, "RED")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(125, 20, 0));
         } else if (Objects.equals(colour_picked, "PURPLE")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(100, 100, 255));
         } else {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         }
+
+        if (Objects.equals(board_size, "3x3")){
+            GameScene.setN(3);
+        } else if (Objects.equals(board_size, "4x4")){
+            GameScene.setN(4);
+        } else if (Objects.equals(board_size, "5x5")){
+            GameScene.setN(5);
+        } else {
+            GameScene.setN(4);
+        }
         setGameScene(gameScene);
         game_stage.setScene(gameScene);
         GameScene game = new GameScene();
-
         game.game(gameScene, gameRoot, game_stage, endGameScene, endgameRoot);
         Stage menu_stage = (Stage) StartButton.getScene().getWindow();
         menu_stage.close();
@@ -90,12 +93,13 @@ public class Controller {
     void set_gametype(ActionEvent event) {
         board_size = game_type.getValue();
         if (Objects.equals(board_size, "3x3")){
-            GameScene.n = 3;
+            GameScene.setN(3);
         } else if (Objects.equals(board_size, "4x4")){
-            GameScene.n = 4;
+            GameScene.setN(4);
         } else if (Objects.equals(board_size, "5x5")){
-            GameScene.n = 5;
+            GameScene.setN(5);
+        } else {
+            GameScene.setN(4);
         }
-
     }
 }
