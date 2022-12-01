@@ -20,7 +20,6 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     public static long score = 0;
-    public static long highscore;
     private boolean movement = true;
     public static boolean add = false;
     private int [][] prevArray = new int[5][5];
@@ -226,7 +225,7 @@ class GameScene {
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
-            cells[i][des].setModify(true);
+            cells[i][des+sign].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -244,7 +243,7 @@ class GameScene {
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
-            cells[des][j].setModify(true);
+            cells[des+sign][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
@@ -319,7 +318,6 @@ class GameScene {
                             primaryStage.setScene(endGameScene);
                             EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                             root.getChildren().clear();
-                            score = 0;
                         }
                     } else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT ||
                             key.getCode() == KeyCode.RIGHT) && (movement || add))
