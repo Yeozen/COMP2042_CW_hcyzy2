@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.Random;
 
 class GameScene {
-    private static int HEIGHT = 600;
+    private static final int HEIGHT = 600;
     public static int n;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
@@ -20,6 +20,7 @@ class GameScene {
     private Cell[][] cells = new Cell[n][n];
     private Group root;
     public static long score = 0;
+    public static long highscore;
     private boolean movement = true;
     public static boolean add = false;
     private int [][] prevArray = new int[5][5];
@@ -44,9 +45,7 @@ class GameScene {
     private void gameStateCheck() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.println("Previous array: "+prevArray[i][j]);
                 if (prevArray[i][j] != cells[i][j].getNumber()) {
-                    System.out.println("Current array: "+cells[i][j].getNumber());
                     movement =  true;
                 }
                 prevArray[i][j] = cells[i][j].getNumber();
@@ -318,7 +317,6 @@ class GameScene {
                     if (haveEmptyCell == -1) {
                         if (GameScene.this.canNotMove()) {
                             primaryStage.setScene(endGameScene);
-
                             EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                             root.getChildren().clear();
                             score = 0;

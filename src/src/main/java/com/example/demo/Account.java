@@ -6,13 +6,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Account implements Comparable<Account> {
     private long score = 0;
-    private String userName ;
+    private String userName;
     private static ArrayList<Account> accounts = new ArrayList<>();
 
     public Account(String userName){

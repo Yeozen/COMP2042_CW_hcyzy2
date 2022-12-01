@@ -6,41 +6,51 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 
 public class Controller {
     static final int WIDTH = 900;
     static final int HEIGHT = 700;
-    private Group gameRoot = new Group();
+    private static Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-    Group endgameRoot = new Group();
+    public Group endgameRoot = new Group();
     Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
 
     @FXML
     private ChoiceBox<String> colour_picker;
 
     @FXML
+    private TextField user_name;
+
+    @FXML
     private ChoiceBox<String> game_type;
 
-    private String colour_picked;
-    private String board_size;
-
+    @FXML
     public Button StartButton;
 
-    public void setGameRoot(Group gameRoot) {
-        this.gameRoot = gameRoot;
+    @FXML
+    public Button LeaderboardButton;
+
+    public static String colour_picked;
+    public static String board_size;
+    public static String userName;
+
+    public static void setGameRoot(Group gameRoot) {
+        Controller.gameRoot = gameRoot;
     }
 
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
 
-    public void handleButtonClick(ActionEvent event){
+    public void startGame(){
 
         Rectangle backgroundOfMenu = new Rectangle(240, 120, Color.rgb(120, 120, 120, 0.2));
         backgroundOfMenu.setX(WIDTH / 2 - 120);
@@ -54,12 +64,13 @@ public class Controller {
         game_stage.setTitle("2048");
         Group gameRoot = new Group();
         setGameRoot(gameRoot);
-        System.out.println("cocksucker: "+colour_picked);
+
+        userName = user_name.getText();
 
         if (Objects.equals(colour_picked, "YELLOW")){
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
         } else if (Objects.equals(colour_picked, "RED")) {
-            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(125, 20, 0));
+            gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(125, 28, 0));
         } else if (Objects.equals(colour_picked, "PURPLE")) {
             gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(100, 100, 255));
         } else {
@@ -85,21 +96,15 @@ public class Controller {
     }
 
     @FXML
-    void pick_colour(ActionEvent event) {
+    void pick_colour() {
         colour_picked = colour_picker.getValue();
     }
 
     @FXML
-    void set_gametype(ActionEvent event) {
+    void set_gametype() {
         board_size = game_type.getValue();
-        if (Objects.equals(board_size, "3x3")){
-            GameScene.setN(3);
-        } else if (Objects.equals(board_size, "4x4")){
-            GameScene.setN(4);
-        } else if (Objects.equals(board_size, "5x5")){
-            GameScene.setN(5);
-        } else {
-            GameScene.setN(4);
-        }
+    }
+
+    public void show_leaderboard() {
     }
 }

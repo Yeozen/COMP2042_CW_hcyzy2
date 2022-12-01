@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Scanner;
