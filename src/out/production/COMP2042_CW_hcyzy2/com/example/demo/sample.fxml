@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -40,12 +40,20 @@
         </items>
     </ChoiceBox>
 
-    <Button fx:id="StartButton" alignment="CENTER" layoutX="82.0" layoutY="378.0" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-padding: 10;" text="Start" textAlignment="CENTER">
+    <Button fx:id="StartButton" alignment="CENTER" layoutX="91.0" layoutY="376.0" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-padding: 10;" text="Start" textAlignment="CENTER">
         <font>
-            <Font name="Berlin Sans FB" size="23.0" />
+            <Font name="High Tower Text Italic" size="23.0" />
         </font>
         <effect>
-            <InnerShadow />
+         <DropShadow height="31.0" radius="14.254999999999999" width="28.02" />
         </effect>
     </Button>
+   <Button fx:id="LeaderboardButton" alignment="CENTER" layoutX="71.0" layoutY="326.0" mnemonicParsing="false" onAction="#show_leaderboard" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-border-radius: 10;" text="Leaderboard">
+      <font>
+         <Font name="High Tower Text" size="16.0" />
+      </font>
+      <effect>
+         <DropShadow />
+      </effect>
+   </Button>
 </Pane>

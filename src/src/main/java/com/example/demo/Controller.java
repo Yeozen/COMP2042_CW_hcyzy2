@@ -3,16 +3,23 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+
+import static com.example.demo.Account.LeaderboardArray;
+import static com.example.demo.Account.lengthOfFile;
 
 
 public class Controller {
@@ -49,6 +56,7 @@ public class Controller {
     public void setGameScene(Scene gameScene) {
         this.gameScene = gameScene;
     }
+
 
     public void startGame(){
 
@@ -105,6 +113,42 @@ public class Controller {
         board_size = game_type.getValue();
     }
 
-    public void show_leaderboard() {
+    public void show_leaderboard() throws IOException {
+        String family = "Helvetica";
+        double size = 50;
+
+        TextFlow textFlow = new TextFlow();
+        textFlow.setLayoutX(40);
+        textFlow.setLayoutY(40);
+        Text text1 = new Text("Hello ");
+        text1.setFont(Font.font(family, size));
+        text1.setFill(Color.RED);
+        Text text2 = new Text("Bold");
+        text2.setFill(Color.ORANGE);
+        text2.setFont(Font.font(family, FontWeight.BOLD, size));
+        Text text3 = new Text(" World");
+        text3.setFill(Color.GREEN);
+        text3.setFont(Font.font(family, FontPosture.ITALIC, size));
+        textFlow.getChildren().addAll(text1, text2, text3);
+
+        Stage stage = new Stage();
+        Group group = new Group(textFlow);
+        Scene scene = new Scene(group, 500, 150, Color.WHITE);
+        stage.setTitle("Hello Rich Text");
+        stage.setScene(scene);
+        stage.show();
+        int vert = 250;
+        int hori = 250;
+        for (int i = 0; i < lengthOfFile()/2; i++) {
+            for (int j = 0; j < 2; j++) {
+                Text text = new Text(LeaderboardArray[i][j]);
+                text2.relocate(vert, hori);
+                text2.setFont(Font.font(80));
+                text2.setText(String.valueOf(text2));
+                hori+=50;
+            }
+            vert+=50;
+        }
+        stage.show();
     }
 }

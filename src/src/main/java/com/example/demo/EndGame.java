@@ -44,7 +44,6 @@ public class EndGame {
 
 
     public void endGameShow(Scene endGameScene, Group root, Stage primaryStage, long score){
-
         Text text = new Text("GAME OVER");
         text.relocate(250, 250);
         text.setFont(Font.font(80));
