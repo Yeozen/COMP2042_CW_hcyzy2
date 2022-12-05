@@ -9,6 +9,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Random;
 
 class GameScene {
@@ -318,13 +319,16 @@ class GameScene {
                     if (haveEmptyCell == -1) {
                         if (GameScene.this.canNotMove()) {
                             primaryStage.setScene(endGameScene);
-
+                            try {
+                                Account.saveScore();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             EndGame.getInstance().endGameShow(endGameScene, endGameRoot, primaryStage, score);
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1 && (key.getCode() == KeyCode.DOWN || key.getCode() == KeyCode.UP || key.getCode() == KeyCode.LEFT ||
-                            key.getCode() == KeyCode.RIGHT) && (movement || add))
+                    } else if(haveEmptyCell == 1 && (key.getCode().isArrowKey()) && (movement || add))
                         GameScene.this.randomFillNumber(2);
                         add = false;
                         movement = false;
