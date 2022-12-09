@@ -45,9 +45,7 @@ class GameScene {
     private void gameStateCheck() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                System.out.println("Previous array: "+prevArray[i][j]);
                 if (prevArray[i][j] != cells[i][j].getNumber()) {
-                    System.out.println("Current array: "+cells[i][j].getNumber());
                     movement =  true;
                 }
                 prevArray[i][j] = cells[i][j].getNumber();
@@ -228,7 +226,7 @@ class GameScene {
     private void moveHorizontally(int i, int j, int des, int sign) {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
-            cells[i][des].setModify(true);
+            cells[i][des+ sign].setModify(true);
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -246,7 +244,7 @@ class GameScene {
     private void moveVertically(int i, int j, int des, int sign) {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
-            cells[des][j].setModify(true);
+            cells[des + sign][j].setModify(true);
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
@@ -254,10 +252,14 @@ class GameScene {
 
     private boolean haveSameNumberNearly(int i, int j) {
         if (i < n - 1 && j < n - 1) {
-            if (cells[i + 1][j].getNumber() == cells[i][j].getNumber())
+            if (cells[i + 1][j].getNumber() == cells[i][j].getNumber()){
                 return true;
-            if (cells[i][j + 1].getNumber() == cells[i][j].getNumber())
+            }
+
+            if (cells[i][j + 1].getNumber() == cells[i][j].getNumber()){
                 return true;
+            }
+
         }
         return false;
     }
@@ -328,10 +330,12 @@ class GameScene {
                             root.getChildren().clear();
                             score = 0;
                         }
-                    } else if(haveEmptyCell == 1 && (key.getCode().isArrowKey()) && (movement || add))
+                    } else if(haveEmptyCell == 1 && (key.getCode().isArrowKey()) && (movement || add)){
                         GameScene.this.randomFillNumber(2);
                         add = false;
                         movement = false;
+                    }
+
                 });
             });
     }
