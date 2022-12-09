@@ -57,7 +57,7 @@ public class EndGame {
         quitButton.setPrefSize(100,30);
         quitButton.setTextFill(BLACK);
         root.getChildren().add(quitButton);
-        quitButton.relocate(410,500);
+        quitButton.relocate(300,500);
         quitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
