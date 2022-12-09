@@ -5,58 +5,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< Updated upstream
-<GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
-    <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-    </rowConstraints>
-    <children>
-        <VBox fx:id="Menu" prefHeight="384.0" prefWidth="279.0" style="-fx-background-color: white; -fx-border-color: yellow; -fx-border-radius: 20; -fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <children>
-                <Label style="-fx-padding: 5; -fx-background-color: #7CFC00; -fx-background-radius: 10;" text="2048" textAlignment="CENTER" translateX="100.0" translateY="80.0">
-                    <font>
-                        <Font size="35.0" />
-                    </font>
-                    <effect>
-                        <Reflection />
-                    </effect></Label>
-                <ChoiceBox fx:id="colour_picker" onAction="#pick_colour" prefWidth="150.0" translateX="65.0" translateY="150.0" value="Pick a colour">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="YELLOW" />
-                            <String fx:value="RED" />
-                            <String fx:value="PURPLE" />
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
-                <ChoiceBox fx:id="game_type" onAction="#set_gametype" value="Select your board size" prefWidth="150.0" translateX="65.0" translateY="160.0">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="3x3" />
-                            <String fx:value="4x4" />
-                            <String fx:value="5x5" />
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
-=======
-<Pane fx:id="pane1" prefHeight="472.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
-    <Label layoutX="82.0" layoutY="69.0" style="-fx-padding: 5; -fx-background-color: #7CFC00; -fx-background-radius: 10;" text="2048" textAlignment="CENTER">
+<Pane fx:id="pane1" prefHeight="472.0" prefWidth="551.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+    <Label layoutX="233.0" layoutY="69.0" style="-fx-padding: 5; -fx-background-color: #7CFC00; -fx-background-radius: 10;" text="2048" textAlignment="CENTER">
         <font>
             <Font size="35.0" />
         </font>
@@ -64,8 +20,8 @@
             <Reflection />
         </effect>
     </Label>
-    <TextField fx:id="user_name" layoutX="49.0" layoutY="193.0" maxWidth="-Infinity" promptText="Username" />
-    <ChoiceBox fx:id="colour_picker" layoutX="48.0" layoutY="236.0" onAction="#pick_colour" prefWidth="150.0" value="Pick a colour">
+    <TextField fx:id="user_name" layoutX="201.0" layoutY="190.0" maxWidth="-Infinity" promptText="Username" />
+    <ChoiceBox fx:id="colour_picker" layoutX="200.0" layoutY="236.0" onAction="#pick_colour" prefWidth="150.0" value="Pick a colour">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="YELLOW" />
@@ -74,7 +30,7 @@
             </FXCollections>
         </items>
     </ChoiceBox>
-    <ChoiceBox fx:id="game_type" layoutX="50.0" layoutY="276.0" onAction="#set_gametype" prefWidth="150.0" value="Select your board size">
+    <ChoiceBox fx:id="game_type" layoutX="201.0" layoutY="276.0" onAction="#set_gametype" prefWidth="150.0" value="Select your board size">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="3x3" />
@@ -83,19 +39,21 @@
             </FXCollections>
         </items>
     </ChoiceBox>
->>>>>>> Stashed changes
 
-                <Button fx:id="StartButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonClick" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-padding: 10;" text="Start" textAlignment="CENTER" translateX="110.0" translateY="180.0">
-                    <font>
-                        <Font name="Berlin Sans FB" size="23.0" />
-                    </font>
-                    <effect>
-                        <InnerShadow />
-                    </effect></Button>
-            </children>
-            <effect>
-                <DropShadow height="25.68" radius="12.925" width="28.02" />
-            </effect>
-        </VBox>
-    </children>
-</GridPane>
+    <Button fx:id="StartButton" alignment="CENTER" layoutX="241.0" layoutY="374.0" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-padding: 10;" text="Start" textAlignment="CENTER">
+        <font>
+            <Font name="High Tower Text Italic" size="23.0" />
+        </font>
+        <effect>
+         <DropShadow height="31.0" radius="14.254999999999999" width="28.02" />
+        </effect>
+    </Button>
+   <Button fx:id="LeaderboardButton" alignment="CENTER" layoutX="224.0" layoutY="322.0" mnemonicParsing="false" onAction="#show_leaderboard" style="-fx-background-color: #CCFF99; -fx-background-radius: 10; -fx-border-radius: 10;" text="Leaderboard">
+      <font>
+         <Font name="High Tower Text" size="16.0" />
+      </font>
+      <effect>
+         <DropShadow />
+      </effect>
+   </Button>
+</Pane>
