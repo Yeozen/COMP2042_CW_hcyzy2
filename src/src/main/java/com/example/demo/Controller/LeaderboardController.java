@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 
 /**
  * LeaderboardController handles everything dealing with the leaderboard.fxml
+ * @author Zen Yeo
  */
 public class LeaderboardController implements Initializable {
 

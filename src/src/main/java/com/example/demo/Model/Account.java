@@ -12,10 +12,11 @@ import static com.example.demo.Model.GameScene.score;
 
 /**
  * Account class that holds everything related to the users accounts and high scores
+ * @author Zen Yeo-modified
  */
 public class Account {
     /**
-     * A 2d array that holds 22 strings. Each username and high score is stored in such a way that they correspond to each other which
+     * A 2d array that holds 22 strings. Each username and high score is stored in such a way that they are linked to each other which
      * is important when sorting the scores. E.g. (username 1 and its score is both accessible by LeaderboardArray[0][0] and [0][1])
      */
     public static String[][] LeaderboardArray = new String[11][2];

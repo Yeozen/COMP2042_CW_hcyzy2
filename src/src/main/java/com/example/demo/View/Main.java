@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+/**
+ * Main class contains the methods to begin the game
+ */
 public class Main extends Application {
     
 
@@ -18,6 +21,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * starts the application
+     * @param args takes in the argument
+     */
     public static void main(String[] args) {
         launch(args);
     }

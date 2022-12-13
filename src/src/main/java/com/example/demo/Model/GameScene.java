@@ -12,6 +12,8 @@ import java.util.Random;
 
 /**
  * this class handles everything to do with the gameplay itself
+ * @author Zen Yeo-modified
+ *
  */
 public class GameScene {
     private static int HEIGHT = 600;
@@ -321,7 +323,10 @@ public class GameScene {
     }
 
     /**
-     * method to start the game
+     * method to start the game, gameStateSave() is called twice here, once when everything is initialized to save the
+     * starting state of the board and the other one is called whenever the user enters a movement input.
+     * gameStateCheck() is called afterwards the set the boolean values for add and movement which determine if a block
+     * should spawn or not. Once canNotMove() is true, saveScore() is called to record the user's high score.
      * @param gameScene gameScene parameter to determine the properties of the game scene
      * @param root the group of the gameScene
      * @param primaryStage the properties of the stage (if any)
@@ -366,7 +371,7 @@ public class GameScene {
                     } else if (key.getCode() == KeyCode.RIGHT) {
                         GameScene.this.moveRight();
                     }
-                    scoreText.setText("Score: "+score);
+                    scoreText.setText(""+score);
                     haveEmptyCell = GameScene.this.haveEmptyCell();
                     gameStateCheck();
                     if (haveEmptyCell == -1) {

@@ -22,6 +22,7 @@ import static javafx.scene.paint.Color.BLACK;
 
 /**
  * endGame class that contains everything regarding the endgame scene when the user loses the game
+ * @author Zen Yeo-modified
  */
 public class EndGame {
     private static EndGame singleInstance = null;

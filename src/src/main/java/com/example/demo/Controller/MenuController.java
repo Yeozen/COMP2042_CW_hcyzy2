@@ -12,20 +12,25 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
-
 import static com.example.demo.Model.Account.LeaderboardArray;
 import static com.example.demo.Model.Account.populateArray;
 
 
 /**
  * Controller class that contains everything to deal with the menu.fxml file
+ * @author Zen Yeo-modified
  */
 public class MenuController {
+    /**
+     * width of gameScene window
+     */
     public static final int WIDTH = 900;
+    /**
+     * height of gameScene window
+     */
     public static final int HEIGHT = 700;
     private static Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
