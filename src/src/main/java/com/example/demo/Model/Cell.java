@@ -1,6 +1,8 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 
+import com.example.demo.Model.GameScene;
+import com.example.demo.Model.TextMaker;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

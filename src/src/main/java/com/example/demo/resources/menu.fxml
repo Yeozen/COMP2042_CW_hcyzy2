@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane1" prefHeight="472.0" prefWidth="551.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<Pane fx:id="pane1" prefHeight="472.0" prefWidth="551.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller.MenuController">
     <Label layoutX="233.0" layoutY="69.0" style="-fx-padding: 5; -fx-background-color: #7CFC00; -fx-background-radius: 10;" text="2048" textAlignment="CENTER">
         <font>
             <Font size="35.0" />

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author yeozen
  */
-class ControllerTest {
+class MenuControllerTest {
 
     @Test
     void pick_colour() {

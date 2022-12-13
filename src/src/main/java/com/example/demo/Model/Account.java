@@ -1,4 +1,6 @@
-package com.example.demo;
+package com.example.demo.Model;
+
+import com.example.demo.Controller.MenuController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.example.demo.GameScene.score;
+import static com.example.demo.Model.GameScene.score;
 
 /**
  * Account class that holds everything related to the users accounts and high scores
@@ -32,7 +34,7 @@ public class Account {
      * @return length of scores.txt
      * @throws IOException
      */
-    static int lengthOfFile() throws IOException {
+    public static int lengthOfFile() throws IOException {
         FileReader fr = new FileReader("scores.txt");
         BufferedReader br = new BufferedReader(fr);
         String line;
@@ -47,7 +49,7 @@ public class Account {
      * reads the text file and inserts into the array so the data can be manipulated more easily
      * @throws IOException
      */
-    static void populateArray() throws IOException {
+    public static void populateArray() throws IOException {
         FileReader fr = new FileReader("scores.txt");
         BufferedReader br = new BufferedReader(fr);
         String line;
@@ -68,7 +70,7 @@ public class Account {
      */
     static void saveScore() throws IOException {
         FileWriter fw = new FileWriter("scores.txt", true);
-        fw.append(Controller.userName).append("\n").append(String.valueOf(getScore())).append("\n");
+        fw.append(MenuController.userName).append("\n").append(String.valueOf(getScore())).append("\n");
         fw.close();
         populateArray();
         duplicateCheck();
@@ -115,7 +117,7 @@ public class Account {
      */
     static void duplicateCheck() throws IOException {
         for (int i = 0; i < (lengthOfFile() / 2) - 1; i++) {
-            if (Objects.equals(LeaderboardArray[i][0], Controller.userName)){
+            if (Objects.equals(LeaderboardArray[i][0], MenuController.userName)){
                 if (Integer.parseInt(LeaderboardArray[i][1]) < getScore()){
                     LeaderboardArray[i][1] = String.valueOf(getScore());
                     String tempScore = LeaderboardArray[((lengthOfFile() / 2) - 1)][1];

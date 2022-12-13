@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.Model;
 
+import com.example.demo.Model.GameScene;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

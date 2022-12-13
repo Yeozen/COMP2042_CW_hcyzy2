@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
+import com.example.demo.Model.GameScene;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -16,16 +17,16 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.example.demo.Account.LeaderboardArray;
-import static com.example.demo.Account.populateArray;
+import static com.example.demo.Model.Account.LeaderboardArray;
+import static com.example.demo.Model.Account.populateArray;
 
 
 /**
  * Controller class that contains everything to deal with the menu.fxml file
  */
-public class Controller {
-    static final int WIDTH = 900;
-    static final int HEIGHT = 700;
+public class MenuController {
+    public static final int WIDTH = 900;
+    public static final int HEIGHT = 700;
     private static Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
     public Group endgameRoot = new Group();
@@ -72,7 +73,7 @@ public class Controller {
     public static String userName;
 
     public static void setGameRoot(Group gameRoot) {
-        Controller.gameRoot = gameRoot;
+        MenuController.gameRoot = gameRoot;
     }
 
     public void setGameScene(Scene gameScene) {
@@ -157,7 +158,7 @@ public class Controller {
         populateArray();
         int label = 0;
         Parent pane;
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/leaderboard.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demo/resources/leaderboard.fxml"));
         pane = loader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);

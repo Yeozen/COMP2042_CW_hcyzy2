@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.Model;
 
+import com.example.demo.Controller.MenuController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.example.demo.Controller.*;
+import static com.example.demo.Controller.MenuController.*;
 import static javafx.scene.paint.Color.BLACK;
 
 /**
@@ -28,7 +29,7 @@ public class EndGame {
 
     public Group endgameRoot = new Group();
     public void setGameRoot(Group gameRoot) {
-        Controller.setGameRoot(gameRoot);
+        MenuController.setGameRoot(gameRoot);
     }
 
     public void setGameScene(Scene gameScene) {

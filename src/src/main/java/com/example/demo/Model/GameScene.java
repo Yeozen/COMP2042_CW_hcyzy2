@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Model;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * this class handles everything to do with the gameplay itself
  */
-class GameScene {
+public class GameScene {
     private static int HEIGHT = 600;
     /**
      * n is a int variable to store the length of the board, e.g. n = 3 would result in a 3x3 board size
@@ -39,7 +39,7 @@ class GameScene {
      * this method sets the size of the board and adapts the size to fit as well
      * @param number takes in the number (size of board desired by user)
      */
-    static void setN(int number) {
+    public static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
@@ -328,7 +328,7 @@ class GameScene {
      * @param endGameScene the properties of the end game scene when the user loses
      * @param endGameRoot the group of the endGame scene
      */
-    void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
+    public void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
