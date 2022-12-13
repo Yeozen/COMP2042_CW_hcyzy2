@@ -4,23 +4,34 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 import static com.example.demo.GameScene.score;
 
+/**
+ * Account class that holds everything related to the users accounts and high scores
+ */
 public class Account {
-
-    private static ArrayList<Account> accounts = new ArrayList<>();
+    /**
+     * A 2d array that holds 22 strings. Each username and high score is stored in such a way that they correspond to each other which
+     * is important when sorting the scores. E.g. (username 1 and its score is both accessible by LeaderboardArray[0][0] and [0][1])
+     */
     public static String[][] LeaderboardArray = new String[11][2];
     private static boolean isDuplicate = false;
 
+    /**
+     * getter method to obtain score from GameScene file
+     * @return score from GameScene
+     */
     private static long getScore() {
         return score;
     }
 
-
+    /**
+     * finds the length of the text file used to store usernames and scores
+     * @return length of scores.txt
+     * @throws IOException
+     */
     static int lengthOfFile() throws IOException {
         FileReader fr = new FileReader("scores.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -32,6 +43,10 @@ public class Account {
         return lengthOfFile;
     }
 
+    /**
+     * reads the text file and inserts into the array so the data can be manipulated more easily
+     * @throws IOException
+     */
     static void populateArray() throws IOException {
         FileReader fr = new FileReader("scores.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -46,6 +61,11 @@ public class Account {
         br.close();
     }
 
+    /**
+     * saves the latest score to the text file and calls upon the other methods to sort, find duplicates and rewrite the
+     * text file with the correct order of username/high score.
+     * @throws IOException
+     */
     static void saveScore() throws IOException {
         FileWriter fw = new FileWriter("scores.txt", true);
         fw.append(Controller.userName).append("\n").append(String.valueOf(getScore())).append("\n");
@@ -69,6 +89,10 @@ public class Account {
         sortedScores.close();
     }
 
+    /**
+     * sorts the array via bubblesort
+     * @throws IOException
+     */
     static void sortArray() throws IOException {
         for (int k = 0; k < (lengthOfFile() / 2) - 1; k++) {
                 for (int i = 0; i < (lengthOfFile() / 2) - 1; i++) {
@@ -84,6 +108,11 @@ public class Account {
         }
     }
 
+    /**
+     * checks for duplicate usernames in the current array, if there are, swap with the last element in the array
+     * and just print out the array without the last element
+     * @throws IOException
+     */
     static void duplicateCheck() throws IOException {
         for (int i = 0; i < (lengthOfFile() / 2) - 1; i++) {
             if (Objects.equals(LeaderboardArray[i][0], Controller.userName)){

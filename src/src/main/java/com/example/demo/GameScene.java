@@ -1,5 +1,4 @@
 package com.example.demo;
-
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,32 +7,54 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * this class handles everything to do with the gameplay itself
+ */
 class GameScene {
     private static int HEIGHT = 600;
+    /**
+     * n is a int variable to store the length of the board, e.g. n = 3 would result in a 3x3 board size
+     */
     public static int n;
     private final static int distanceBetweenCells = 10;
     private static double LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     private TextMaker textMaker = TextMaker.getSingleInstance();
     private Cell[][] cells = new Cell[n][n];
     private Group root;
+    /**
+     * score is a long variable to store the users current high score
+     */
     public static long score = 0;
     private boolean movement = true;
+    /**
+     * add is a boolean value to detect if there has been addition performed in the users move
+     */
     public static boolean add = false;
     private int [][] prevArray = new int[5][5];
 
+    /**
+     * this method sets the size of the board and adapts the size to fit as well
+     * @param number takes in the number (size of board desired by user)
+     */
     static void setN(int number) {
         n = number;
         LENGTH = (HEIGHT - ((n + 1) * distanceBetweenCells)) / (double) n;
     }
 
+    /**
+     * getter method to obtain length of the board
+     * @return length of the board
+     */
     static double getLENGTH() {
         return LENGTH;
     }
 
+    /**
+     * stores the current values of the cells on the board in an array
+     */
     private void gameStateSave() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -42,6 +63,9 @@ class GameScene {
         }
     }
 
+    /**
+     * compares the current cells on the board with the previous state to discern movement
+     */
     private void gameStateCheck() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -53,6 +77,10 @@ class GameScene {
         }
     }
 
+    /**
+     * randomly fills an empty space on the board with a number
+     * @param turn takes in the turn number
+     */
     private void randomFillNumber(int turn) {
 
         Cell[][] emptyCells = new Cell[n][n];
@@ -102,6 +130,10 @@ class GameScene {
         }
     }
 
+    /**
+     * checks for empty cells or a 2048 cell
+     * @return a number signifying whether there are empty cells, none, or there is a 2048 cell
+     */
     private int  haveEmptyCell() {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -227,6 +259,8 @@ class GameScene {
         if (isValidDesH(i, j, des, sign)) {
             cells[i][j].adder(cells[i][des + sign]);
             cells[i][des+ sign].setModify(true);
+            sumCellNumbersToScore();
+
         } else if (des != j) {
             cells[i][j].changeCell(cells[i][des]);
         }
@@ -245,6 +279,7 @@ class GameScene {
         if (isValidDesV(i, j, des, sign)) {
             cells[i][j].adder(cells[des + sign][j]);
             cells[des + sign][j].setModify(true);
+            sumCellNumbersToScore();
         } else if (des != i) {
             cells[i][j].changeCell(cells[des][j]);
         }
@@ -275,8 +310,24 @@ class GameScene {
         return true;
     }
 
-    
+    private void sumCellNumbersToScore() {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (cells[i][j].getModify()) {
+                    score += cells[i][j].getNumber();
+                }
+            }
+        }
+    }
 
+    /**
+     * method to start the game
+     * @param gameScene gameScene parameter to determine the properties of the game scene
+     * @param root the group of the gameScene
+     * @param primaryStage the properties of the stage (if any)
+     * @param endGameScene the properties of the end game scene when the user loses
+     * @param endGameRoot the group of the endGame scene
+     */
     void game(Scene gameScene, Group root, Stage primaryStage, Scene endGameScene, Group endGameRoot) {
         this.root = root;
         for (int i = 0; i < n; i++) {

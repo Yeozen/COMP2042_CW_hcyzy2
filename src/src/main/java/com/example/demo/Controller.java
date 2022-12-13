@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -8,11 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -20,18 +16,24 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.example.demo.Account.*;
+import static com.example.demo.Account.LeaderboardArray;
+import static com.example.demo.Account.populateArray;
 
 
+/**
+ * Controller class that contains everything to deal with the menu.fxml file
+ */
 public class Controller {
     static final int WIDTH = 900;
     static final int HEIGHT = 700;
     private static Group gameRoot = new Group();
     private Scene gameScene = new Scene(gameRoot, WIDTH, HEIGHT, Color.rgb(189, 177, 92));
-    private static Group leaderboardRoot = new Group();
     public Group endgameRoot = new Group();
     Scene endGameScene = new Scene(endgameRoot, WIDTH, HEIGHT, Color.rgb(250, 20, 100, 0.2));
 
+    /**
+     * pane variable that wraps the entire menu fxml
+     */
     @FXML
     public static Pane pane1;
 
@@ -44,14 +46,29 @@ public class Controller {
     @FXML
     private ChoiceBox<String> game_type;
 
+    /**
+     * button to start game
+     */
     @FXML
     public Button StartButton;
 
+    /**
+     * button to display the leaderboard
+     */
     @FXML
     public Button LeaderboardButton;
 
+    /**
+     * variable to store the colour picked
+     */
     public static String colour_picked;
+    /**
+     * variable to store board size
+     */
     public static String board_size;
+    /**
+     * variable to store username
+     */
     public static String userName;
 
     public static void setGameRoot(Group gameRoot) {
@@ -62,6 +79,9 @@ public class Controller {
         this.gameScene = gameScene;
     }
 
+    /**
+     * method that handles the button click on start button, starts game
+     */
     public void startGame(){
         userName = user_name.getText();
         if (Objects.equals(userName, "")){
@@ -113,21 +133,31 @@ public class Controller {
         }
     }
 
+    /**
+     * obtains the colour value picked from the choice box
+     */
     @FXML
     void pick_colour() {
         colour_picked = colour_picker.getValue();
     }
 
+    /**
+     * obtains the size of board from the choice box
+     */
     @FXML
     void set_gametype() {
         board_size = game_type.getValue();
     }
 
-    public void show_leaderboard(ActionEvent event) throws IOException {
+    /**
+     * shows the leaderboard by replacing the labels with the values in the LeaderboardArray
+     * @throws IOException
+     */
+    public void show_leaderboard() throws IOException {
         populateArray();
         int label = 0;
         Parent pane;
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("leaderboard.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/leaderboard.fxml"));
         pane = loader.load();
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
