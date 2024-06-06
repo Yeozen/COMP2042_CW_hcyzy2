@@ -9,16 +9,16 @@
    e) Color changer for the game scene\
    f) Warning to enter name if user does not enter a name before playing the game\
    g) Fixed the random spawning and increasing score bug\
-   h) Organised the files into Model, View and Controller folders to better follow the MVC principles\
+   h) Organised the files into Model, View and Controller folders to better follow the MVC principles
 5. Duplicate check for leaderboard, if user chooses to restart and has a lower score than the first time, a duplicate will appear in the leaderboard.
 6. a) Back to menu button on leaderboard, currently only has a 'close' button because could not
       figure out the fxml code (it was working a week before i swear).\
-   b) The restart button was supposed to bring up the menu.fxml but it stopped working a week before (see above) so the alternative is ugly but it works.\
+   b) The restart button was supposed to bring up the menu.fxml but it stopped working a week before (see above) so the alternative is ugly but it works.
 7. LeaderboardController
 8. a) MenuController (formerly Controller)\
    b) Account\
    c) Endgame\
-   d) Gamescene\
+   d) Gamescene
    
 Unexpected problems:
 The score and spawning bug were huge obstacles. The score bug was mainly just the score increasing whenever a key was pressed/held down even though no valid moves 
